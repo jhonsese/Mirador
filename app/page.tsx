@@ -419,23 +419,23 @@ export default function MiradorDynamicLanding() {
 
       {/* Reservation Dialog */}
       <Dialog open={showReservationDialog} onOpenChange={setShowReservationDialog}>
-        <DialogContent className="sm:max-w-[600px] bg-gradient-to-br from-gray-50 to-white border-red-200 text-gray-800 max-h-[90vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-[680px] bg-gradient-to-br from-gray-50 to-white border-red-200 text-gray-800 max-h-[85vh] p-8 overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-3xl font-bold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent">
+            <DialogTitle className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent">
               Crea Tu Experiencia Perfecta
             </DialogTitle>
-            <DialogDescription className="text-gray-600 text-lg">
+            <DialogDescription className="text-base sm:text-lg text-gray-600">
               Personaliza tu momento mágico en nuestros espacios románticos
             </DialogDescription>
           </DialogHeader>
 
-          <div className="space-y-6 py-6">
+          <div className="space-y-10 py-4">
             {/* Progress Indicator */}
-            <div className="flex items-center justify-center space-x-2 mb-8 overflow-x-auto pb-2">
+            <div className="flex items-center justify-center space-x-3 mb-10 overflow-x-auto pb-3">
               {[1, 2, 3, 4].map((step) => (
-                <div key={step} className="flex items-center flex-shrink-0">
+                <div key={step} className="flex items-center flex-shrink-0 mt-1">
                   <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-all duration-300 ${
+                    className={`w-10 h-10 mx-3 rounded-full flex items-center justify-center font-semibold transition-all duration-300 ${
                       step <= reservationStep
                         ? "bg-gradient-to-r from-red-500 to-pink-500 text-white scale-110"
                         : "bg-gray-200 text-gray-400"
@@ -778,7 +778,7 @@ export default function MiradorDynamicLanding() {
       <section id="lugares" className="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-gray-800 mb-6 bg-gradient-to-r from-red-600 via-pink-600 to-red-600 bg-clip-text text-transparent">
+            <h2 className="text-5xl font-bold text-gray-800 mb-12 leading-tight bg-gradient-to-r from-red-600 via-pink-600 to-red-600 bg-clip-text text-transparent">
               Descubre Nuestros Espacios Mágicos
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -786,14 +786,14 @@ export default function MiradorDynamicLanding() {
               inolvidables.
             </p>
           </div>
-
-          <Tabs defaultValue="mirador" value={selectedLocation} onValueChange={setSelectedLocation} className="w-full">
-            <TabsList className="flex w-full grid-cols-3 max-w-4xl mx-auto mb-12 bg-white p-2 rounded-2xl border-2 border-gray-200 shadow-lg">
+          <Tabs defaultValue="mirador" value={selectedLocation} onValueChange={setSelectedLocation} data-active={selectedLocation} className="w-full group">
+            <div className="relative w-full max-w-5xl mx-auto mb-12 group">
+              <div className="absolute top-4 left-4 h-[56px] w-[calc((100%-3rem)/3-0.5rem)] rounded-xl transition-all duration-500 ease-out pointer-events-none group-data-[active=mirador]:translate-x-0 group-data-[active=mirador]:bg-gradient-to-r group-data-[active=mirador]:from-red-500 group-data-[active=mirador]:to-pink-500 group-data-[active=cabanas]:translate-x-[calc(100%+1rem)] group-data-[active=cabanas]:bg-gradient-to-r group-data-[active=cabanas]:from-green-500 group-data-[active=cabanas]:to-emerald-500 group-data-[active=finca]:translate-x-[calc(200%+2rem)] group-data-[active=finca]:bg-gradient-to-r group-data-[active=finca]:from-lime-500 group-data-[active=finca]:to-green-500" />
+              <TabsList className="relative grid grid-cols-3 gap-4 w-full max-w-5xl mx-auto mb-12 bg-transparent p-4 min-h-[96px] rounded-2xl border-2 border-gray-200 shadow-lg">
               <TabsTrigger
-                value="mirador"
-                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-500 data-[state=active]:to-pink-500 data-[state=active]:text-white rounded-xl transition-all duration-300 py-4 text-gray-700"
-              >
-                <div className="flex items-center space-x-2">
+              value="mirador"
+              className="relative z-10 w-full flex items-center justify-center py-4 rounded-xl bg-transparent data-[state=active]:bg-transparent text-gray-700 transition-colors duration-300 data-[state=active]:text-white">
+              <div className="flex items-center space-x-2">
                   <Mountain className="w-5 h-5" />
                   <span className="hidden sm:inline">Mirador del Bosque</span>
                   <span className="sm:hidden">Mirador</span>
@@ -801,8 +801,7 @@ export default function MiradorDynamicLanding() {
               </TabsTrigger>
               <TabsTrigger
                 value="cabanas"
-                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500 data-[state=active]:to-emerald-500 data-[state=active]:text-white rounded-xl transition-all duration-300 py-4 text-gray-700"
-              >
+                className="relative z-10 w-full flex items-center justify-center py-4 rounded-xl bg-transparent data-[state=active]:bg-transparent text-gray-700 transition-colors duration-300 data-[state=active]:text-white">
                 <div className="flex items-center space-x-2">
                   <Trees className="w-5 h-5" />
                   <span className="hidden sm:inline">Cabañas Rurales</span>
@@ -811,8 +810,7 @@ export default function MiradorDynamicLanding() {
               </TabsTrigger>
               <TabsTrigger
                 value="finca"
-                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-lime-500 data-[state=active]:to-green-500 data-[state=active]:text-white rounded-xl transition-all duration-300 py-4 text-gray-700"
-              >
+                className="relative z-10 w-full flex items-center justify-center py-4 rounded-xl bg-transparent data-[state=active]:bg-transparent text-gray-700 transition-colors duration-300 data-[state=active]:text-white">
                 <div className="flex items-center space-x-2">
                   <Sprout className="w-5 h-5" />
                   <span className="hidden sm:inline">Finca</span>
@@ -820,7 +818,7 @@ export default function MiradorDynamicLanding() {
                 </div>
               </TabsTrigger>
             </TabsList>
-
+            </div>
             {Object.entries(locations).map(([key, location]) => (
               <TabsContent key={key} value={key} className="mt-0 animate-in fade-in slide-in-from-bottom duration-500">
                 <div className="text-center mb-12">
