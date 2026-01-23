@@ -118,8 +118,8 @@ export default function MiradorDynamicLanding() {
           icon: <Rose className="w-8 h-8 text-pink-500" />,
           image: "/img/rosas.jpg",
           gallery: [
-            "/img/rosas.jpg",
-            "/img/rosas.jpg",
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
             "/placeholder.svg?height=600&width=800",
             "/placeholder.svg?height=600&width=800",
           ],
@@ -370,10 +370,10 @@ export default function MiradorDynamicLanding() {
       </div>
 
       {/* Header */}
-      <header className="fixed top-0 w-full bg-white/80 backdrop-blur-xl border-b border-gray-100 z-50 transition-all duration-300 shadow-md">
-        <div className="container mx-auto px-6 lg:px-10 py-3 flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 p-1 bg-gradient-to-br from-red-600 to-pink-500 rounded-full flex items-center justify-center transition-all duration-500 hover:scale-110 hover:shadow-xl hover:shadow-red-500/40">
+      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-xl border-b border-gray-100 z-50 transition-all duration-300 shadow-md">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-10 py-2 sm:py-3 flex items-center justify-between">
+          <div className="flex items-center space-x-2 sm:space-x-4">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 p-0.5 sm:p-1 bg-gradient-to-br from-red-600 to-pink-500 rounded-full flex items-center justify-center transition-all duration-500 hover:scale-110 hover:shadow-xl hover:shadow-red-500/40">
               <img
                 src="/banner-removebg-preview.jpg"
                 alt="Logo Mirador del Bosque"
@@ -381,12 +381,12 @@ export default function MiradorDynamicLanding() {
               />
             </div>
             <div>
-              <h1 className="text-2xl font-extrabold text-gray-800 tracking-tight">Mirador del Bosque</h1>
-              <p className="text-xs text-gray-500 font-medium">San Antonio de Prado, Antioquia</p>
+              <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 tracking-tight font-serif">Mirador del Bosque</h1>
+              <p className="text-[10px] sm:text-xs text-gray-500 font-medium hidden sm:block">San Antonio de Prado, Antioquia</p>
             </div>
           </div>
 
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden lg:flex space-x-8">
             <a
               href="#inicio"
               className="text-gray-700 font-semibold hover:text-red-600 transition-colors relative group py-2"
@@ -812,8 +812,35 @@ export default function MiradorDynamicLanding() {
         </DialogContent>
       </Dialog>
 
+      {/* Floating WhatsApp Button */}
+      <a
+        href="https://wa.me/573163519046?text=Hola!%20Me%20gustar%C3%ADa%20hacer%20una%20reserva%20en%20Mirador%20del%20Bosque"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 group"
+      >
+        <div className="relative">
+          {/* Pulse animation */}
+          <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-30"></div>
+          <div className="absolute -inset-1 bg-gradient-to-r from-green-400 to-green-600 rounded-full blur opacity-60 group-hover:opacity-100 transition-opacity"></div>
+          
+          {/* Button */}
+          <div className="relative w-16 h-16 md:w-18 md:h-18 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-2xl shadow-green-500/50 group-hover:scale-110 transition-all duration-300">
+            <svg className="w-8 h-8 md:w-9 md:h-9 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </div>
+          
+          {/* Tooltip */}
+          <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 bg-white px-4 py-2 rounded-xl shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap hidden md:block">
+            <span className="text-gray-800 font-semibold text-sm">Reserva por WhatsApp</span>
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1 w-2 h-2 bg-white rotate-45"></div>
+          </div>
+        </div>
+      </a>
+
       {/* Dynamic Hero Section */}
-      <section id="inicio" className="relative h-screen overflow-hidden">
+      <section id="inicio" className="relative h-screen min-h-[600px] overflow-hidden">
         <div className="absolute inset-0 transition-all duration-1000">
           <video
             ref={videoRef}
@@ -826,36 +853,49 @@ export default function MiradorDynamicLanding() {
             className="absolute top-0 left-0 w-full h-full object-cover z-0"
           />
 
-          <div className="absolute inset-0 bg-gradient-to-br from-black/50 to-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
 
-          <div className="relative z-20 h-full flex items-center justify-center">
-            <div className="text-center text-white max-w-4xl mx-auto px-4">
+          <div className="relative z-20 h-full flex items-center justify-center px-4 pt-20 pb-32 md:pt-0 md:pb-0">
+            <div className="text-center text-white max-w-5xl mx-auto">
               <div className="transform transition-all duration-1000 delay-300 translate-y-0 opacity-100">
-                <h1 className="text-6xl md:text-8xl font-bold mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent drop-shadow-2xl">
+                {/* Decorative element */}
+                <div className="flex items-center justify-center mb-4 md:mb-6">
+                  <div className="h-px w-8 md:w-16 bg-gradient-to-r from-transparent to-white/60"></div>
+                  <Heart className="w-5 h-5 md:w-6 md:h-6 mx-3 text-red-400 animate-pulse" />
+                  <div className="h-px w-8 md:w-16 bg-gradient-to-l from-transparent to-white/60"></div>
+                </div>
+                
+                {/* Main Title - Serif Font */}
+                <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-2 md:mb-4 text-white drop-shadow-2xl tracking-tight">
                   {heroSlides[currentSlide].title}
                 </h1>
-                <p className="text-2xl md:text-3xl mb-6 text-gray-100 font-semibold">
+                
+                {/* Subtitle - Elegant */}
+                <p className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-6 text-white/90 font-light italic tracking-wide">
                   {heroSlides[currentSlide].subtitle}
                 </p>
-                <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto leading-relaxed text-gray-200">
+                
+                {/* Description */}
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6 md:mb-10 max-w-xl md:max-w-2xl mx-auto leading-relaxed text-gray-200 font-light px-4">
                   {heroSlides[currentSlide].description}
                 </p>
 
-                <div className="flex flex-col items-center space-y-4">
+                {/* CTA Button */}
+                <div className="flex flex-col items-center space-y-3 md:space-y-4">
                   <Button
                     onClick={() => setShowReservationDialog(true)}
                     size="lg"
-                    className="group relative bg-red-600 hover:bg-red-700 text-white font-extrabold text-lg px-12 py-8 rounded-2xl border-0 shadow-2xl shadow-red-500/50 hover:shadow-red-500/75 transition-all duration-300 hover:scale-110 overflow-hidden"
+                    className="group relative bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold text-base sm:text-lg px-8 sm:px-10 md:px-14 py-6 sm:py-7 md:py-8 rounded-full border-0 shadow-2xl shadow-red-500/40 hover:shadow-red-500/60 transition-all duration-300 hover:scale-105"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="relative flex items-center space-x-3">
-                      <Sparkles className="w-6 h-6 animate-pulse text-yellow-300" />
-                      <span className="text-xl tracking-wider">Reserva Tu Experiencia Mágica</span>
-                      <Heart className="w-6 h-6 animate-pulse text-pink-300" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
+                    <div className="relative flex items-center space-x-2 sm:space-x-3">
+                      <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-yellow-300" />
+                      <span className="tracking-wide">Reservar Ahora</span>
+                      <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </Button>
-                  <p className="text-sm text-gray-200 animate-pulse font-medium">
-                    ✨ Personaliza tu momento perfecto en 4 pasos ✨
+                  <p className="text-xs sm:text-sm text-gray-300 font-light tracking-wider">
+                    Personaliza tu experiencia en 4 simples pasos
                   </p>
                 </div>
               </div>
@@ -863,32 +903,35 @@ export default function MiradorDynamicLanding() {
           </div>
         </div>
 
-        {/* Hero Controls */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30">
-          <div className="flex items-center space-x-4">
+        {/* Hero Controls - Mobile optimized */}
+        <div className="absolute bottom-20 md:bottom-10 left-1/2 transform -translate-x-1/2 z-30">
+          <div className="flex items-center space-x-3 md:space-x-4 bg-black/30 backdrop-blur-md px-4 py-2 md:px-6 md:py-3 rounded-full">
             <button
               onClick={handlePlayPause}
-              className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+              className="w-10 h-10 md:w-12 md:h-12 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
             >
-              {isPlaying ? <Pause className="w-5 h-5 text-white" /> : <Play className="w-5 h-5 text-white" />}
+              {isPlaying ? <Pause className="w-4 h-4 md:w-5 md:h-5 text-white" /> : <Play className="w-4 h-4 md:w-5 md:h-5 text-white" />}
             </button>
 
-            <div className="flex space-x-2">
-              {heroSlides.map((_, index) => (
+            <div className="flex space-x-1.5 md:space-x-2">
+              {heroSlides.map((slide, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    index === currentSlide ? "bg-white scale-125" : "bg-white/50 hover:bg-white/70"
+                  className={`transition-all duration-300 rounded-full ${
+                    index === currentSlide 
+                      ? "w-6 md:w-8 h-2 md:h-2.5 bg-white" 
+                      : "w-2 md:w-2.5 h-2 md:h-2.5 bg-white/50 hover:bg-white/70"
                   }`}
+                  title={slide.title}
                 />
               ))}
             </div>
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-8 animate-bounce z-30">
+        {/* Scroll Indicator - Hidden on mobile */}
+        <div className="absolute bottom-10 left-8 animate-bounce z-30 hidden md:block">
           <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
             <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
           </div>
