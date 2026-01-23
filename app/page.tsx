@@ -7,32 +7,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import {
-  Heart,
-  Mountain,
-  Snowflake,
-  Flame,
-  Home,
-  Cross as Rose,
-  Star,
-  Play,
-  Pause,
-  Calendar,
-  Utensils,
-  Moon,
-  MessageCircle,
-  Sparkles,
-  Trees,
-  Flower2,
-  Sprout,
-  ArrowRight,
-  Instagram,
-  Facebook,
-  Quote,
-  Users,
-  Award,
-  TrendingUp,
-} from "lucide-react"
+import { Heart, Mountain, Snowflake, Flame, Home, Cross as Rose, Star, Play, Pause, Calendar, Utensils, Moon, MessageCircle, Sparkles, Trees, Flower2, Sprout, ArrowRight, Instagram, Facebook, ChevronLeft, ChevronRight, Images, ExternalLink } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
 
 export default function MiradorDynamicLanding() {
@@ -48,6 +23,9 @@ export default function MiradorDynamicLanding() {
     location: "",
     suite: "",
   })
+  const [showGalleryDialog, setShowGalleryDialog] = useState(false)
+  const [selectedRoom, setSelectedRoom] = useState<typeof locations.mirador.rooms[0] | null>(null)
+  const [galleryIndex, setGalleryIndex] = useState(0)
 
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -111,8 +89,15 @@ export default function MiradorDynamicLanding() {
           location: "Mirador del Bosque",
           description:
             "El calor de una chimenea real abraza tu amor mientras las llamas danzan creando sombras románticas en cada rincón.",
+          fullDescription: "Sumérgete en el abrazo cálido de nuestra Suite Chimenea, donde el crepitar del fuego crea la banda sonora perfecta para tu romance. Cada rincón ha sido diseñado pensando en la intimidad y el confort, con iluminación tenue que resalta la danza de las llamas. El aroma a madera y la calidez envolvente transforman cualquier ocasión en un momento mágico e inolvidable.",
           icon: <Flame className="w-8 h-8 text-orange-500" />,
           image: "/img/chimenea.jpg",
+          gallery: [
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
+          ],
           features: [
             "Chimenea real funcionando",
             "Ambiente cálido y acogedor",
@@ -129,8 +114,15 @@ export default function MiradorDynamicLanding() {
           location: "Mirador del Bosque",
           description:
             "Un jardín eterno de rosas donde cada pétalo cuenta una historia de amor. Aromas naturales y belleza floral sin límites.",
+          fullDescription: "Entra a un mundo donde el romance florece en cada esquina. Nuestra Suite Rosas te envuelve en un mar de pétalos y fragancias que despiertan los sentidos más profundos. Cada detalle está pensado para crear una atmósfera de ensueño, desde las rosas frescas hasta la iluminación que baña todo en un resplandor rosado. El escenario perfecto para propuestas de matrimonio, aniversarios o simplemente para demostrar tu amor.",
           icon: <Rose className="w-8 h-8 text-pink-500" />,
           image: "/img/rosas.jpg",
+          gallery: [
+            "/img/rosas.jpg",
+            "/img/rosas.jpg",
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
+          ],
           features: [
             "Decoración floral natural",
             "Pétalos de rosa frescos",
@@ -147,8 +139,15 @@ export default function MiradorDynamicLanding() {
           location: "Mirador del Bosque",
           description:
             "Escápate a una auténtica cabaña de madera con terraza privada y vista al bosque. El lugar perfecto para declaraciones de amor eternas.",
+          fullDescription: "Descubre el encanto de nuestra Cabaña del Amor, un refugio mágico construido en madera natural que te transporta a un cuento de hadas. Con vistas panorámicas al bosque antioqueño, cada amanecer y atardecer se convierte en un espectáculo natural. La terraza privada es perfecta para brindar bajo las estrellas mientras el sonido del bosque crea la melodía perfecta para tu romance.",
           icon: <Home className="w-8 h-8 text-amber-600" />,
           image: "/img/cabaña.jpg",
+          gallery: [
+            "/cabana-room.jpg",
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
+          ],
           features: [
             "Construcción en madera natural",
             "Terraza con vista al bosque",
@@ -165,8 +164,15 @@ export default function MiradorDynamicLanding() {
           location: "Mirador del Bosque",
           description:
             "Vive una experiencia celestial donde el cielo es el límite. Globos, corazones y mensajes luminosos crean momentos mágicos.",
+          fullDescription: "Eleva tu amor hasta las nubes en nuestra Suite El Cielo. Un espacio mágico donde los globos flotan creando un cielo de ensueño, los mensajes luminosos personalizados cuentan tu historia y cada rincón brilla con la promesa del amor eterno. Perfecto para pedidas de mano, declaraciones de amor o celebraciones que merecen tocar el cielo.",
           icon: <Star className="w-8 h-8 text-blue-400" />,
           image: "/img/cielo.jpg",
+          gallery: [
+            "/cielo-room.jpg",
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
+          ],
           features: [
             "Decoración celestial única",
             "Mensajes luminosos personalizados",
@@ -183,8 +189,15 @@ export default function MiradorDynamicLanding() {
           location: "Mirador del Bosque",
           description:
             "Sumérgete en un mundo de hielo eterno donde las auroras danzan sobre tu amor. Paredes azules como glaciares y decoración invernal crean la atmósfera perfecta.",
+          fullDescription: "Viaja al fin del mundo sin salir de Antioquia. Nuestra Suite Antártida te sumerge en un paraíso polar donde las paredes simulan glaciares eternos, las luces recrean auroras boreales danzantes y cada detalle te transporta a un mundo de fantasía invernal. Un espacio único donde el frío exterior contrasta con el calor de tu amor.",
           icon: <Snowflake className="w-8 h-8 text-cyan-400" />,
           image: "/img/antartida.jpg",
+          gallery: [
+            "/antartida-room.png",
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
+          ],
           features: [
             "Iluminación aurora boreal",
             "Decoración polar auténtica",
@@ -209,8 +222,15 @@ export default function MiradorDynamicLanding() {
           location: "Zona Rural",
           description:
             "Un chalet acogedor inspirado en los alpes, perfecto para parejas que buscan privacidad total en medio de la naturaleza.",
+          fullDescription: "Escápate a nuestro Chalet Margarita, un refugio alpino en medio de la zona rural antioqueña. Con arquitectura inspirada en los Alpes suizos, ofrece privacidad total, vistas panorámicas al campo y todas las comodidades para una estadía perfecta. La fogata exterior es ideal para noches románticas bajo las estrellas.",
           icon: <Flower2 className="w-8 h-8 text-yellow-400" />,
-          image: "/img/chalet.jpg",
+          image: "/placeholder.svg?height=300&width=400",
+          gallery: [
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
+          ],
           features: ["Cabaña independiente", "Vista panorámica al campo", "Cocina equipada", "Fogata exterior"],
           price: "Desde $250.000 COP",
           gradient: "from-yellow-500 to-orange-500",
@@ -222,8 +242,15 @@ export default function MiradorDynamicLanding() {
           location: "Zona Rural",
           description:
             "Conecta con la naturaleza en esta cabaña rústica que combina comodidad moderna con el encanto del campo colombiano.",
+          fullDescription: "La Cabaña Chowa combina la esencia del campo colombiano con comodidades modernas. Disfruta de hamacas en la terraza, una zona de BBQ privada y senderos naturales para explorar juntos. Es el escape perfecto para parejas que buscan reconectarse con la naturaleza y entre sí.",
           icon: <Home className="w-8 h-8 text-green-500" />,
           image: "/placeholder.svg?height=300&width=400",
+          gallery: [
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
+          ],
           features: ["Arquitectura tradicional", "Hamacas en terraza", "Zona de BBQ privada", "Senderos naturales"],
           price: "Desde $240.000 COP",
           gradient: "from-green-500 to-teal-600",
@@ -243,8 +270,15 @@ export default function MiradorDynamicLanding() {
           location: "Finca",
           description:
             "Una finca completa para ti y tu pareja. Disfruta de amplios espacios verdes, jardines floridos y la tranquilidad del campo antioqueño.",
+          fullDescription: "Vive la experiencia campestre completa en nuestra Finca Entre Guayacanes. Con amplios espacios verdes, piscina natural rodeada de naturaleza, jardines de guayacanes en flor y la tranquilidad absoluta del campo antioqueño. Ideal para parejas que desean una escapada prolongada con actividades al aire libre y momentos de paz total.",
           icon: <Sprout className="w-8 h-8 text-lime-500" />,
           image: "/placeholder.svg?height=300&width=400",
+          gallery: [
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
+            "/placeholder.svg?height=600&width=800",
+          ],
           features: [
             "Finca privada completa",
             "Piscina natural",
@@ -259,33 +293,6 @@ export default function MiradorDynamicLanding() {
       ],
     },
   }
-
-  const testimonials = [
-    {
-      name: "María & Carlos",
-      location: "Medellín",
-      text: "¡Fue la propuesta de matrimonio perfecta! La Suite Antártida superó todas nuestras expectativas. La decoración, la atención y cada detalle nos hicieron sentir en otro mundo. ¡Ella dijo que sí! 💍",
-      rating: 5,
-      date: "Enero 2025",
-      suite: "Suite Antártida",
-    },
-    {
-      name: "Laura & Andrés",
-      location: "Envigado",
-      text: "Celebramos nuestro aniversario en la Cabaña del Amor y fue simplemente mágico. El ambiente rústico con la vista al bosque nos transportó a un cuento de hadas. Volveremos sin duda ❤️",
-      rating: 5,
-      date: "Diciembre 2024",
-      suite: "Cabaña del Amor",
-    },
-    {
-      name: "Daniela & Sebastián",
-      location: "Sabaneta",
-      text: "La Suite Rosas fue el escenario perfecto para nuestra cena romántica. Los pétalos, las velas y cada detalle fueron cuidadosamente preparados. Es el lugar ideal para sorprender a tu pareja 🌹",
-      rating: 5,
-      date: "Noviembre 2024",
-      suite: "Suite Rosas",
-    },
-  ]
 
   useEffect(() => {
     if (isPlaying) {
@@ -419,23 +426,23 @@ export default function MiradorDynamicLanding() {
 
       {/* Reservation Dialog */}
       <Dialog open={showReservationDialog} onOpenChange={setShowReservationDialog}>
-        <DialogContent className="sm:max-w-[680px] bg-gradient-to-br from-gray-50 to-white border-red-200 text-gray-800 max-h-[85vh] p-8 overflow-y-auto">
+        <DialogContent className="sm:max-w-[600px] bg-gradient-to-br from-gray-50 to-white border-red-200 text-gray-800 max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent">
+            <DialogTitle className="text-3xl font-bold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent">
               Crea Tu Experiencia Perfecta
             </DialogTitle>
-            <DialogDescription className="text-base sm:text-lg text-gray-600">
+            <DialogDescription className="text-gray-600 text-lg">
               Personaliza tu momento mágico en nuestros espacios románticos
             </DialogDescription>
           </DialogHeader>
 
-          <div className="space-y-10 py-4">
+          <div className="space-y-6 py-6">
             {/* Progress Indicator */}
-            <div className="flex items-center justify-center space-x-3 mb-10 overflow-x-auto pb-3">
+            <div className="flex items-center justify-center space-x-2 mb-8 overflow-x-auto pb-2">
               {[1, 2, 3, 4].map((step) => (
-                <div key={step} className="flex items-center flex-shrink-0 mt-1">
+                <div key={step} className="flex items-center flex-shrink-0">
                   <div
-                    className={`w-10 h-10 mx-3 rounded-full flex items-center justify-center font-semibold transition-all duration-300 ${
+                    className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-all duration-300 ${
                       step <= reservationStep
                         ? "bg-gradient-to-r from-red-500 to-pink-500 text-white scale-110"
                         : "bg-gray-200 text-gray-400"
@@ -691,6 +698,120 @@ export default function MiradorDynamicLanding() {
         </DialogContent>
       </Dialog>
 
+      {/* Gallery Dialog */}
+      <Dialog open={showGalleryDialog} onOpenChange={setShowGalleryDialog}>
+        <DialogContent className="sm:max-w-[900px] max-h-[90vh] bg-white border-gray-200 p-0 overflow-hidden">
+          {selectedRoom && (
+            <div className="flex flex-col h-full">
+              {/* Header */}
+              <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4">
+                    <div className={`w-14 h-14 bg-gradient-to-br ${selectedRoom.gradient} rounded-full flex items-center justify-center shadow-lg`}>
+                      {selectedRoom.icon}
+                    </div>
+                    <div>
+                      <DialogTitle className="text-2xl font-bold text-gray-800">{selectedRoom.name}</DialogTitle>
+                      <DialogDescription className="text-gray-600">{selectedRoom.theme} - {selectedRoom.location}</DialogDescription>
+                    </div>
+                  </div>
+                  <div className="bg-red-600 px-4 py-2 rounded-lg">
+                    <span className="text-white font-bold">{selectedRoom.price}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Gallery */}
+              <div className="relative flex-1 bg-gray-900">
+                <div className="relative h-[400px] w-full">
+                  <Image
+                    src={selectedRoom.gallery?.[galleryIndex] || selectedRoom.image}
+                    alt={`${selectedRoom.name} - Imagen ${galleryIndex + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                  
+                  {/* Gallery Navigation */}
+                  {selectedRoom.gallery && selectedRoom.gallery.length > 1 && (
+                    <>
+                      <button
+                        onClick={() => setGalleryIndex(prev => prev === 0 ? selectedRoom.gallery!.length - 1 : prev - 1)}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110"
+                      >
+                        <ChevronLeft className="w-6 h-6 text-gray-800" />
+                      </button>
+                      <button
+                        onClick={() => setGalleryIndex(prev => prev === selectedRoom.gallery!.length - 1 ? 0 : prev + 1)}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110"
+                      >
+                        <ChevronRight className="w-6 h-6 text-gray-800" />
+                      </button>
+                      
+                      {/* Dots */}
+                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                        {selectedRoom.gallery.map((_, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => setGalleryIndex(idx)}
+                            className={`w-3 h-3 rounded-full transition-all ${
+                              idx === galleryIndex ? "bg-white scale-125" : "bg-white/50 hover:bg-white/70"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+
+              {/* Description & CTA */}
+              <div className="p-6 bg-white">
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  {selectedRoom.fullDescription || selectedRoom.description}
+                </p>
+                
+                {/* Features */}
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                  {selectedRoom.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-center text-sm text-gray-600">
+                      <div className="w-2 h-2 bg-gradient-to-r from-red-400 to-pink-400 rounded-full mr-3"></div>
+                      {feature}
+                    </div>
+                  ))}
+                </div>
+
+                {/* CTA Buttons */}
+                <div className="flex gap-4">
+                  <Button
+                    onClick={() => {
+                      setShowGalleryDialog(false)
+                      setReservationData({
+                        ...reservationData,
+                        suite: selectedRoom.name,
+                        location: selectedRoom.location,
+                      })
+                      setShowReservationDialog(true)
+                    }}
+                    className={`flex-1 bg-gradient-to-r ${selectedRoom.gradient} hover:shadow-lg border-0 font-bold text-white py-6`}
+                  >
+                    <Sparkles className="w-5 h-5 mr-2" />
+                    Reservar Ahora
+                  </Button>
+                  <Button
+                    onClick={() => window.open("https://wa.me/573163519046", "_blank")}
+                    variant="outline"
+                    className="bg-transparent border-2 border-gray-300 text-gray-700 hover:bg-gray-100 py-6"
+                  >
+                    <MessageCircle className="w-5 h-5 mr-2" />
+                    Consultar
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+
       {/* Dynamic Hero Section */}
       <section id="inicio" className="relative h-screen overflow-hidden">
         <div className="absolute inset-0 transition-all duration-1000">
@@ -778,7 +899,7 @@ export default function MiradorDynamicLanding() {
       <section id="lugares" className="py-20 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-gray-800 mb-12 leading-tight bg-gradient-to-r from-red-600 via-pink-600 to-red-600 bg-clip-text text-transparent">
+            <h2 className="text-5xl font-bold text-gray-800 mb-6 bg-gradient-to-r from-red-600 via-pink-600 to-red-600 bg-clip-text text-transparent">
               Descubre Nuestros Espacios Mágicos
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -786,14 +907,14 @@ export default function MiradorDynamicLanding() {
               inolvidables.
             </p>
           </div>
-          <Tabs defaultValue="mirador" value={selectedLocation} onValueChange={setSelectedLocation} data-active={selectedLocation} className="w-full group">
-            <div className="relative w-full max-w-5xl mx-auto mb-12 group">
-              <div className="absolute top-4 left-4 h-[56px] w-[calc((100%-3rem)/3-0.5rem)] rounded-xl transition-all duration-500 ease-out pointer-events-none group-data-[active=mirador]:translate-x-0 group-data-[active=mirador]:bg-gradient-to-r group-data-[active=mirador]:from-red-500 group-data-[active=mirador]:to-pink-500 group-data-[active=cabanas]:translate-x-[calc(100%+1rem)] group-data-[active=cabanas]:bg-gradient-to-r group-data-[active=cabanas]:from-green-500 group-data-[active=cabanas]:to-emerald-500 group-data-[active=finca]:translate-x-[calc(200%+2rem)] group-data-[active=finca]:bg-gradient-to-r group-data-[active=finca]:from-lime-500 group-data-[active=finca]:to-green-500" />
-              <TabsList className="relative grid grid-cols-3 gap-4 w-full max-w-5xl mx-auto mb-12 bg-transparent p-4 min-h-[96px] rounded-2xl border-2 border-gray-200 shadow-lg">
+
+          <Tabs defaultValue="mirador" value={selectedLocation} onValueChange={setSelectedLocation} className="w-full">
+            <TabsList className="flex w-full grid-cols-3 max-w-4xl mx-auto mb-12 bg-white p-2 rounded-2xl border-2 border-gray-200 shadow-lg">
               <TabsTrigger
-              value="mirador"
-              className="relative z-10 w-full flex items-center justify-center py-4 rounded-xl bg-transparent data-[state=active]:bg-transparent text-gray-700 transition-colors duration-300 data-[state=active]:text-white">
-              <div className="flex items-center space-x-2">
+                value="mirador"
+                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-500 data-[state=active]:to-pink-500 data-[state=active]:text-white rounded-xl transition-all duration-300 py-4 text-gray-700"
+              >
+                <div className="flex items-center space-x-2">
                   <Mountain className="w-5 h-5" />
                   <span className="hidden sm:inline">Mirador del Bosque</span>
                   <span className="sm:hidden">Mirador</span>
@@ -801,7 +922,8 @@ export default function MiradorDynamicLanding() {
               </TabsTrigger>
               <TabsTrigger
                 value="cabanas"
-                className="relative z-10 w-full flex items-center justify-center py-4 rounded-xl bg-transparent data-[state=active]:bg-transparent text-gray-700 transition-colors duration-300 data-[state=active]:text-white">
+                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-green-500 data-[state=active]:to-emerald-500 data-[state=active]:text-white rounded-xl transition-all duration-300 py-4 text-gray-700"
+              >
                 <div className="flex items-center space-x-2">
                   <Trees className="w-5 h-5" />
                   <span className="hidden sm:inline">Cabañas Rurales</span>
@@ -810,7 +932,8 @@ export default function MiradorDynamicLanding() {
               </TabsTrigger>
               <TabsTrigger
                 value="finca"
-                className="relative z-10 w-full flex items-center justify-center py-4 rounded-xl bg-transparent data-[state=active]:bg-transparent text-gray-700 transition-colors duration-300 data-[state=active]:text-white">
+                className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-lime-500 data-[state=active]:to-green-500 data-[state=active]:text-white rounded-xl transition-all duration-300 py-4 text-gray-700"
+              >
                 <div className="flex items-center space-x-2">
                   <Sprout className="w-5 h-5" />
                   <span className="hidden sm:inline">Finca</span>
@@ -818,7 +941,7 @@ export default function MiradorDynamicLanding() {
                 </div>
               </TabsTrigger>
             </TabsList>
-            </div>
+
             {Object.entries(locations).map(([key, location]) => (
               <TabsContent key={key} value={key} className="mt-0 animate-in fade-in slide-in-from-bottom duration-500">
                 <div className="text-center mb-12">
@@ -865,26 +988,40 @@ export default function MiradorDynamicLanding() {
                       <CardContent>
                         <p className="text-gray-700 mb-6 leading-relaxed">{room.description}</p>
                         <ul className="space-y-2 mb-6">
-                          {room.features.map((feature, idx) => (
+                          {room.features.slice(0, 3).map((feature, idx) => (
                             <li key={idx} className="flex items-center text-sm text-gray-600">
                               <div className="w-2 h-2 bg-gradient-to-r from-red-400 to-pink-400 rounded-full mr-3 group-hover:animate-pulse"></div>
                               {feature}
                             </li>
                           ))}
                         </ul>
-                        <Button
-                          onClick={() => {
-                            setReservationData({
-                              ...reservationData,
-                              suite: room.name,
-                              location: room.location,
-                            })
-                            setShowReservationDialog(true)
-                          }}
-                          className={`w-full bg-gradient-to-r ${room.gradient} hover:shadow-lg hover:shadow-red-500/25 border-0 font-semibold transition-all duration-300 text-white`}
-                        >
-                          Reservar {room.name}
-                        </Button>
+                        <div className="flex gap-3">
+                          <Button
+                            onClick={() => {
+                              setSelectedRoom(room)
+                              setGalleryIndex(0)
+                              setShowGalleryDialog(true)
+                            }}
+                            variant="outline"
+                            className="flex-1 bg-transparent border-2 border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400 font-semibold transition-all duration-300"
+                          >
+                            <Images className="w-4 h-4 mr-2" />
+                            Ver Galería
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              setReservationData({
+                                ...reservationData,
+                                suite: room.name,
+                                location: room.location,
+                              })
+                              setShowReservationDialog(true)
+                            }}
+                            className={`flex-1 bg-gradient-to-r ${room.gradient} hover:shadow-lg hover:shadow-red-500/25 border-0 font-semibold transition-all duration-300 text-white`}
+                          >
+                            Reservar
+                          </Button>
+                        </div>
                       </CardContent>
                     </Card>
                   ))}
@@ -895,126 +1032,124 @@ export default function MiradorDynamicLanding() {
         </div>
       </section>
 
-      {/* Testimonials & Social Proof Section */}
+      {/* Instagram Experiences Section */}
       <section
         id="experiencias"
-        className="py-20 bg-gradient-to-br from-red-50 via-pink-50 to-red-50 relative overflow-hidden"
+        className="py-20 bg-gradient-to-br from-gray-50 via-white to-gray-50 relative overflow-hidden"
       >
-        <div className="absolute inset-0 bg-[url('/placeholder.svg?height=800&width=1200')] opacity-5 bg-cover bg-center"></div>
         <div className="container mx-auto px-4 relative z-10">
+          {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-gray-800 mb-6 bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent">
-              Historias de Amor Reales
+            <div className="inline-flex items-center justify-center space-x-3 mb-6">
+              <div className="w-16 h-16 bg-gradient-to-br from-pink-500 via-red-500 to-orange-500 rounded-2xl flex items-center justify-center shadow-lg">
+                <Instagram className="w-8 h-8 text-white" />
+              </div>
+            </div>
+            <h2 className="text-5xl font-bold text-gray-800 mb-6 bg-gradient-to-r from-pink-600 via-red-600 to-orange-500 bg-clip-text text-transparent">
+              Experiencias Reales
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Miles de parejas han creado momentos inolvidables en nuestros espacios. Lee sus experiencias y déjate
-              inspirar para crear la tuya.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-4">
+              Descubre los momentos mágicos que nuestras parejas han vivido. Cada foto es una historia de amor real.
             </p>
+            <a
+              href="https://instagram.com/elmiradordelbosque_"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center space-x-2 text-red-600 hover:text-red-700 font-semibold transition-colors"
+            >
+              <span>@elmiradordelbosque_</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
           </div>
 
-          {/* Stats */}
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-16">
-            <div className="text-center group hover:scale-105 transition-transform duration-300">
-              <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-2xl group-hover:shadow-red-500/50">
-                <Users className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-4xl font-bold text-gray-800 mb-2">2,500+</h3>
-              <p className="text-gray-600 font-medium">Parejas Felices</p>
-            </div>
-            <div className="text-center group hover:scale-105 transition-transform duration-300">
-              <div className="w-20 h-20 bg-gradient-to-br from-pink-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-2xl group-hover:shadow-pink-500/50">
-                <Award className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-4xl font-bold text-gray-800 mb-2">4.9/5</h3>
-              <p className="text-gray-600 font-medium">Calificación Promedio</p>
-            </div>
-            <div className="text-center group hover:scale-105 transition-transform duration-300">
-              <div className="w-20 h-20 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-2xl group-hover:shadow-orange-500/50">
-                <TrendingUp className="w-10 h-10 text-white" />
-              </div>
-              <h3 className="text-4xl font-bold text-gray-800 mb-2">98%</h3>
-              <p className="text-gray-600 font-medium">Volverían a Reservar</p>
-            </div>
-          </div>
-
-          {/* Testimonials */}
-          <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto mb-12">
-            {testimonials.map((testimonial, index) => (
-              <Card
-                key={index}
-                className="bg-white border-2 border-gray-200 hover:border-red-300 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
-              >
-                <CardHeader>
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <CardTitle className="text-xl text-gray-800">{testimonial.name}</CardTitle>
-                      <CardDescription className="text-gray-600">
-                        {testimonial.location} • {testimonial.date}
-                      </CardDescription>
-                    </div>
-                    <Quote className="w-8 h-8 text-red-400" />
-                  </div>
-                  <div className="flex space-x-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-red-500 text-red-500" />
-                    ))}
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-700 leading-relaxed mb-4">{testimonial.text}</p>
-                  <div className="inline-block bg-gradient-to-r from-red-100 to-pink-100 px-3 py-1 rounded-full">
-                    <span className="text-sm font-medium text-red-700">{testimonial.suite}</span>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* CTA Section */}
-          <div className="max-w-4xl mx-auto text-center bg-gradient-to-br from-red-600 to-pink-600 rounded-3xl p-12 shadow-2xl">
-            <h3 className="text-4xl font-bold text-white mb-4">¿Listo Para Crear Tu Historia?</h3>
-            <p className="text-xl text-red-100 mb-8 max-w-2xl mx-auto">
-              Únete a miles de parejas que han confiado en nosotros para sus momentos más especiales. Tu historia de
-              amor merece un escenario perfecto.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                onClick={() => setShowReservationDialog(true)}
-                size="lg"
-                className="bg-white text-red-600 hover:bg-gray-100 font-bold text-lg px-10 py-6 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
-              >
-                <Sparkles className="w-5 h-5 mr-2" />
-                Reservar Mi Experiencia
-              </Button>
-              <Button
-                onClick={() => window.open("https://wa.me/573163519046", "_blank")}
-                size="lg"
-                variant="outline"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-red-600 font-bold text-lg px-10 py-6 rounded-xl transition-all duration-300 hover:scale-105"
-              >
-                <MessageCircle className="w-5 h-5 mr-2" />
-                Chatear con Nosotros
-              </Button>
-            </div>
-
-            {/* Social Links */}
-            <div className="mt-8 pt-8 border-t border-white/20">
-              <p className="text-white mb-4 font-medium">Síguenos en redes sociales</p>
-              <div className="flex justify-center space-x-4">
+          {/* Instagram Grid Placeholder - Connect with your Instagram */}
+          <div className="max-w-6xl mx-auto mb-16">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {/* Instagram Post Placeholders */}
+              {[
+                { gradient: "from-cyan-500 to-blue-600", label: "Antártida" },
+                { gradient: "from-orange-500 to-red-600", label: "Chimenea" },
+                { gradient: "from-pink-500 to-rose-600", label: "Rosas" },
+                { gradient: "from-amber-500 to-orange-600", label: "Cabaña" },
+                { gradient: "from-blue-500 to-indigo-600", label: "Cielo" },
+                { gradient: "from-green-500 to-emerald-600", label: "Chalet" },
+                { gradient: "from-red-500 to-pink-600", label: "Propuesta" },
+                { gradient: "from-purple-500 to-pink-600", label: "Aniversario" },
+              ].map((post, index) => (
                 <a
-                  href="https://instagram.com/elmiradordelbosque"
+                  key={index}
+                  href="https://instagram.com/elmiradordelbosque_"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-white/20 hover:bg-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+                  className="group relative aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105"
                 >
-                  <Instagram className="w-6 h-6 text-white group-hover:text-red-600" />
+                  <div className={`absolute inset-0 bg-gradient-to-br ${post.gradient}`}></div>
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Instagram className="w-8 h-8 mb-2" />
+                    <span className="font-semibold text-sm">{post.label}</span>
+                    <span className="text-xs text-white/80">Ver en Instagram</span>
+                  </div>
+                  <div className="absolute bottom-3 left-3 right-3">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                        <Heart className="w-4 h-4 text-white" />
+                      </div>
+                      <span className="text-white text-sm font-medium opacity-80">{post.label}</span>
+                    </div>
+                  </div>
                 </a>
-                <a
-                  href="#"
-                  className="w-12 h-12 bg-white/20 hover:bg-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
-                >
-                  <Facebook className="w-6 h-6 text-white group-hover:text-red-600" />
-                </a>
+              ))}
+            </div>
+
+            {/* See More on Instagram */}
+            <div className="text-center mt-8">
+              <a
+                href="https://instagram.com/elmiradordelbosque_"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center space-x-3 bg-gradient-to-r from-pink-500 via-red-500 to-orange-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105"
+              >
+                <Instagram className="w-6 h-6" />
+                <span>Ver Más en Instagram</span>
+                <ExternalLink className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* CTA Banner */}
+          <div className="max-w-5xl mx-auto">
+            <div className="relative bg-gradient-to-r from-red-600 via-pink-600 to-red-600 rounded-3xl p-10 md:p-14 shadow-2xl overflow-hidden">
+              {/* Decorative elements */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+              
+              <div className="relative z-10 text-center">
+                <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                  Tu Historia de Amor Comienza Aquí
+                </h3>
+                <p className="text-lg text-red-100 mb-8 max-w-2xl mx-auto">
+                  Crea momentos inolvidables en nuestros espacios temáticos. Reserva hoy y vive la experiencia que mereces.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button
+                    onClick={() => setShowReservationDialog(true)}
+                    size="lg"
+                    className="bg-white text-red-600 hover:bg-gray-100 font-bold text-lg px-10 py-6 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                  >
+                    <Sparkles className="w-5 h-5 mr-2" />
+                    Reservar Mi Experiencia
+                  </Button>
+                  <Button
+                    onClick={() => window.open("https://wa.me/573163519046", "_blank")}
+                    size="lg"
+                    variant="outline"
+                    className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-red-600 font-bold text-lg px-10 py-6 rounded-xl transition-all duration-300 hover:scale-105"
+                  >
+                    <MessageCircle className="w-5 h-5 mr-2" />
+                    Chatear Ahora
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
