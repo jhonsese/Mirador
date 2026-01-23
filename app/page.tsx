@@ -112,7 +112,7 @@ export default function MiradorDynamicLanding() {
           description:
             "El calor de una chimenea real abraza tu amor mientras las llamas danzan creando sombras románticas en cada rincón.",
           icon: <Flame className="w-8 h-8 text-orange-500" />,
-          image: "/placeholder.svg?height=300&width=400",
+          image: "/img/chimenea.jpg",
           features: [
             "Chimenea real funcionando",
             "Ambiente cálido y acogedor",
@@ -130,7 +130,7 @@ export default function MiradorDynamicLanding() {
           description:
             "Un jardín eterno de rosas donde cada pétalo cuenta una historia de amor. Aromas naturales y belleza floral sin límites.",
           icon: <Rose className="w-8 h-8 text-pink-500" />,
-          image: "/placeholder.svg?height=300&width=400",
+          image: "/img/rosas.jpg",
           features: [
             "Decoración floral natural",
             "Pétalos de rosa frescos",
@@ -148,7 +148,7 @@ export default function MiradorDynamicLanding() {
           description:
             "Escápate a una auténtica cabaña de madera con terraza privada y vista al bosque. El lugar perfecto para declaraciones de amor eternas.",
           icon: <Home className="w-8 h-8 text-amber-600" />,
-          image: "/cabana-room.jpg",
+          image: "/img/cabaña.jpg",
           features: [
             "Construcción en madera natural",
             "Terraza con vista al bosque",
@@ -166,7 +166,7 @@ export default function MiradorDynamicLanding() {
           description:
             "Vive una experiencia celestial donde el cielo es el límite. Globos, corazones y mensajes luminosos crean momentos mágicos.",
           icon: <Star className="w-8 h-8 text-blue-400" />,
-          image: "/cielo-room.jpg",
+          image: "/img/cielo.jpg",
           features: [
             "Decoración celestial única",
             "Mensajes luminosos personalizados",
@@ -184,7 +184,7 @@ export default function MiradorDynamicLanding() {
           description:
             "Sumérgete en un mundo de hielo eterno donde las auroras danzan sobre tu amor. Paredes azules como glaciares y decoración invernal crean la atmósfera perfecta.",
           icon: <Snowflake className="w-8 h-8 text-cyan-400" />,
-          image: "/antartida-room.png",
+          image: "/img/antartida.jpg",
           features: [
             "Iluminación aurora boreal",
             "Decoración polar auténtica",
@@ -210,7 +210,7 @@ export default function MiradorDynamicLanding() {
           description:
             "Un chalet acogedor inspirado en los alpes, perfecto para parejas que buscan privacidad total en medio de la naturaleza.",
           icon: <Flower2 className="w-8 h-8 text-yellow-400" />,
-          image: "/placeholder.svg?height=300&width=400",
+          image: "/img/chalet.jpg",
           features: ["Cabaña independiente", "Vista panorámica al campo", "Cocina equipada", "Fogata exterior"],
           price: "Desde $250.000 COP",
           gradient: "from-yellow-500 to-orange-500",
